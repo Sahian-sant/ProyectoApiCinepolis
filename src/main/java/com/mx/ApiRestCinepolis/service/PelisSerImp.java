@@ -11,16 +11,15 @@ import com.mx.ApiRestCinepolis.model.Peliculas;
 
 @Service
 public class PelisSerImp implements PelisServ {
-	
-	
-@Autowired
-PeliculasDao peliculasDao;
 
-@Transactional(readOnly=true)
+	@Autowired
+	PeliculasDao peliculasDao;
+
+	@Transactional(readOnly = true)
 	@Override
 	public List<Peliculas> mostrar() {
 		// TODO Auto-generated method stub
-	List<Peliculas>RegistrodePelis=peliculasDao.findAll();
+		List<Peliculas> RegistrodePelis = peliculasDao.findAll();
 		return RegistrodePelis;
 	}
 

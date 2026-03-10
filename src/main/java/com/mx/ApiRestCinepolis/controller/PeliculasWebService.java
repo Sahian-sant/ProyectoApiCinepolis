@@ -12,19 +12,18 @@ import com.mx.ApiRestCinepolis.model.Peliculas;
 import com.mx.ApiRestCinepolis.service.PelisSerImp;
 
 @RestController
-@RequestMapping(path="api/cinepolis")
+@RequestMapping(path = "api/cinepolis")
 @CrossOrigin
 public class PeliculasWebService {
-	
+
 	@Autowired
 	PelisSerImp pelisSerImp;
 
-	
-	//http://localhost:9000/api/cinepolis/mostrar
+	// http://localhost:9000/api/cinepolis/mostrar
 
 	@GetMapping("mostrar")
-	public List<Peliculas> mostrarPeiculas(){
-	    return pelisSerImp.mostrar();
+	public List<Peliculas> mostrarPeiculas() {
+		return pelisSerImp.mostrar();
 	}
-	
+
 }

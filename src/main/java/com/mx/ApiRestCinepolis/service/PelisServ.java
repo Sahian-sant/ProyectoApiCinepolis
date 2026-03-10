@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.mx.ApiRestCinepolis.model.Peliculas;
 
-
 public interface PelisServ {
-	
+
 	public List<Peliculas> mostrar();
 
 	public boolean guardar(Peliculas pelicula);
