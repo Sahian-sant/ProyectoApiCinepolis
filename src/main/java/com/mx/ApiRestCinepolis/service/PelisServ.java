@@ -12,7 +12,7 @@ public interface PelisServ {
 
 	public Peliculas buscar(Integer idPeli);
 
-	public boolean edita(Peliculas pelicula);
+	public boolean editar(Peliculas pelicula);
 
 	public boolean eliminar(Integer idPelicula);
 }

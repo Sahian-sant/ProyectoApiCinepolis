@@ -2,6 +2,11 @@ package com.mx.ApiRestCinepolis.service;
 
 import java.util.List;
 
+/*Guardar---Validar que el nombre de la pelicula no se repita
+Buscar por idPelicula
+Editar---Validar que el idPelicula exista
+Eliminar---Validar que el idPelicula exista*/
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,26 +30,56 @@ public class PelisSerImp implements PelisServ {
 
 	@Override
 	public boolean guardar(Peliculas pelicula) {
-		// TODO Auto-generated method stub
+
+		boolean bandera = false;
+
+		for (Peliculas p : mostrar()) {
+
+			if (p.getNombre().equalsIgnoreCase(pelicula.getNombre())) {
+				bandera = true;
+				break;
+			}
+		}
+
+		if (!bandera) {
+			peliculasDao.save(pelicula);
+			return true;
+		}
+
 		return false;
 	}
 
 	@Override
+
 	public Peliculas buscar(Integer idPeli) {
 		// TODO Auto-generated method stub
-		return null;
+		Peliculas peli = peliculasDao.findById(idPeli).orElse(null);
+		return peli;
+
 	}
 
+	@Transactional(readOnly = true)
 	@Override
-	public boolean edita(Peliculas pelicula) {
+
+	public boolean editar(Peliculas pelicula) {
 		// TODO Auto-generated method stub
-		return false;
+		if (peliculasDao.existsById(pelicula.getIdPeli())) {
+			peliculasDao.save(pelicula);
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
+
 	public boolean eliminar(Integer idPelicula) {
 		// TODO Auto-generated method stub
-		return false;
+		if (peliculasDao.existsById(idPelicula)) {
+			peliculasDao.deleteById(idPelicula);
+			return true;
+		} else
+
+			return false;
 	}
 
 }
